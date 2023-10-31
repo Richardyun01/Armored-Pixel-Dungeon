@@ -75,16 +75,16 @@ import java.util.ArrayList;
 public class FirearmWeapon extends MeleeWeapon {
 
     public enum FirearmType {
-        FirearmRifle,
-        FirearmHandgun,
-        FirearmSniper,
-        FirearmAuto,
-        FirearmShotgun,
-        FirearmExplosive,
-        FirearmLaser,
-        FirearmHiLaser,
-        FirearmEtc1,
-        FirearmFlame;
+        FirearmRifle,       //basic gun
+        FirearmHandgun,     //low damage, has low chance to stun
+        FirearmSniper,      //high accuracy, cannot close-shot
+        FirearmAuto,        //multiple shots per fire
+        FirearmShotgun,     //all shots per fire, cannot long-shot
+        FirearmExplosive,   //3x3 explosion
+        FirearmLaser,       //basic gun+laser effect
+        FirearmHiLaser,     //sniper+laser effect
+        FirearmEtc1,        //basic gun+buff/debuff effect
+        FirearmFlame;       //unused, brought from ProjectR
     }
 
     public FirearmType type;
