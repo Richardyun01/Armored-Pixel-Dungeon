@@ -55,6 +55,10 @@ public class Badges {
 		MASTERY_ROGUE,
 		MASTERY_HUNTRESS,
 		MASTERY_DUELIST,
+		MASTERY_ANATOLIA,
+		MASTERY_AUGMENTED,
+		MASTERY_MALICIOUS,
+		MASTERY_LASTRAVEN,
 		FOUND_RATMOGRIFY,
 
 		//bronze
@@ -62,6 +66,10 @@ public class Badges {
 		UNLOCK_ROGUE                ( 2 ),
 		UNLOCK_HUNTRESS             ( 3 ),
 		UNLOCK_DUELIST              ( 4 ),
+		UNLOCK_ANATOLIA             ( 1 ),
+		UNLOCK_AUGMENTED            ( 2 ),
+		UNLOCK_MALICIOUS            ( 3 ),
+		UNLOCK_LASTRAVEN            ( 4 ),
 		//UNLOCK_CLERIC             ( 5 ),
 		MONSTERS_SLAIN_1            ( 6 ),
 		MONSTERS_SLAIN_2            ( 7 ),
@@ -109,6 +117,10 @@ public class Badges {
 		BOSS_SLAIN_1_ROGUE,
 		BOSS_SLAIN_1_HUNTRESS,
 		BOSS_SLAIN_1_DUELIST,
+		BOSS_SLAIN_1_ANATOLIA,
+		BOSS_SLAIN_1_AUGMENTED,
+		BOSS_SLAIN_1_MALICIOUS,
+		BOSS_SLAIN_1_LASTRAVEN,
 		BOSS_SLAIN_1_ALL_CLASSES    ( 54, true ),
 		GAMES_PLAYED_2              ( 55, true ),
 		HIGH_SCORE_2                ( 56 ),
@@ -155,6 +167,10 @@ public class Badges {
 		VICTORY_ROGUE,
 		VICTORY_HUNTRESS,
 		VICTORY_DUELIST,
+		VICTORY_ANATOLIA,
+		VICTORY_AUGMENTED,
+		VICTORY_MALICIOUS,
+		VICTORY_LASTRAVEN,
 		VICTORY_ALL_CLASSES         ( 103, true ),
 		DEATH_FROM_ALL              ( 104, true ),
 		BOSS_SLAIN_3_GLADIATOR,
@@ -709,6 +725,10 @@ public class Badges {
 		firstBossClassBadges.put(HeroClass.ROGUE, Badge.BOSS_SLAIN_1_ROGUE);
 		firstBossClassBadges.put(HeroClass.HUNTRESS, Badge.BOSS_SLAIN_1_HUNTRESS);
 		firstBossClassBadges.put(HeroClass.DUELIST, Badge.BOSS_SLAIN_1_DUELIST);
+		firstBossClassBadges.put(HeroClass.ANATOLIA, Badge.BOSS_SLAIN_1_ANATOLIA);
+		firstBossClassBadges.put(HeroClass.AUGMENTED, Badge.BOSS_SLAIN_1_AUGMENTED);
+		firstBossClassBadges.put(HeroClass.MALICIOUS, Badge.BOSS_SLAIN_1_MALICIOUS);
+		firstBossClassBadges.put(HeroClass.LASTRAVEN, Badge.BOSS_SLAIN_1_LASTRAVEN);
 	}
 
 	private static LinkedHashMap<HeroClass, Badge> victoryClassBadges = new LinkedHashMap<>();
@@ -718,6 +738,10 @@ public class Badges {
 		victoryClassBadges.put(HeroClass.ROGUE, Badge.VICTORY_ROGUE);
 		victoryClassBadges.put(HeroClass.HUNTRESS, Badge.VICTORY_HUNTRESS);
 		victoryClassBadges.put(HeroClass.DUELIST, Badge.VICTORY_DUELIST);
+		victoryClassBadges.put(HeroClass.ANATOLIA, Badge.VICTORY_ANATOLIA);
+		victoryClassBadges.put(HeroClass.AUGMENTED, Badge.VICTORY_AUGMENTED);
+		victoryClassBadges.put(HeroClass.MALICIOUS, Badge.VICTORY_MALICIOUS);
+		victoryClassBadges.put(HeroClass.LASTRAVEN, Badge.VICTORY_LASTRAVEN);
 	}
 
 	private static LinkedHashMap<HeroSubClass, Badge> thirdBossSubclassBadges = new LinkedHashMap<>();
@@ -844,6 +868,18 @@ public class Badges {
 			case DUELIST:
 				badge = Badge.MASTERY_DUELIST;
 				break;
+			case ANATOLIA:
+				badge = Badge.MASTERY_ANATOLIA;
+				break;
+			case AUGMENTED:
+				badge = Badge.MASTERY_AUGMENTED;
+				break;
+			case MALICIOUS:
+				badge = Badge.MASTERY_MALICIOUS;
+				break;
+			case LASTRAVEN:
+				badge = Badge.MASTERY_LASTRAVEN;
+				break;
 		}
 		
 		unlock(badge);
@@ -885,6 +921,24 @@ public class Badges {
 					((MeleeWeapon) Dungeon.hero.belongings.weapon).STRReq(0) <= Dungeon.hero.STR()){
 				displayBadge(Badge.UNLOCK_DUELIST);
 			}
+		}
+	}
+
+	public static void validateAugmentedUnlock(){
+		if (Statistics.upgradesUsed >= 1 && !isUnlocked(Badge.UNLOCK_AUGMENTED)){
+			displayBadge( Badge.UNLOCK_AUGMENTED );
+		}
+	}
+
+	public static void validateMaliciousUnlock(){
+		if (Statistics.sneakAttacks >= 10 && !isUnlocked(Badge.UNLOCK_MALICIOUS)){
+			displayBadge( Badge.UNLOCK_MALICIOUS );
+		}
+	}
+
+	public static void validateLastRavenUnlock(){
+		if (Statistics.thrownAttacks >= 10 && !isUnlocked(Badge.UNLOCK_LASTRAVEN)){
+			displayBadge( Badge.UNLOCK_LASTRAVEN );
 		}
 	}
 	

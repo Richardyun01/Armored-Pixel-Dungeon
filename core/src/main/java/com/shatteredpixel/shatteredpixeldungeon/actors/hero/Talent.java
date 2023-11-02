@@ -170,6 +170,39 @@ public enum Talent {
 	//Duelist A3 T4
 	FEIGNED_RETREAT(151, 4), EXPOSE_WEAKNESS(152, 4), COUNTER_ABILITY(153, 4),
 
+	//Anatolia T1
+	OLD_RAVEN(0), WEAPONS_EXPERT(1), OLD_WARRIOR(2), FIRST_INDEPENDENT(3),
+	//Anatolia T2
+	//Anatolia Sub 1 T3
+	//Anatolia Sub 2 T3
+	//048ANEM T4
+	//09-FLICKER T4
+	//Sol Dios T4
+
+	//Augmented T1
+	//Augmented T2
+	//Augmented Sub 1 T3
+	//Augmented Sub 2 T3
+	//IB-C03W1: WLT 011 T4
+	//Pulse Protection T4
+	//BO-044 HUXLEY T4
+
+	//Malicious T1
+	//Malicious T2
+	//Malicious Sub 1 T3
+	//Malicious Sub 2 T3
+	//Grind Blade T4
+	//Huge Cannon T4
+	//Multiple Pulse T4
+
+	//Last Raven T1
+	//Last Raven T2
+	//Last Raven Sub 1 T3
+	//Last Raven Sub 2 T3
+	//I05D-MEDUSA T4
+	//E07AM-MORAY T4
+	//ISHYANATEN T4
+
 	//universal T4
 	HEROIC_ENERGY(26, 4), //See icon() and title() for special logic for this one
 	//Ratmogrify T4

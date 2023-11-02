@@ -28,15 +28,27 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.QuickSlot;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ArmorAbility;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.anatolia.AnemEcm;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.anatolia.Flicker;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.anatolia.SolDios;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.augmented.HuxleyOrbit;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.augmented.PulseProtection;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.augmented.WalterRifle;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Challenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.ElementalStrike;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Feint;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.NaturesPower;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.SpectralBlades;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.lastraven.Ishyanaten;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.lastraven.Medusa;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.lastraven.Moray;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.mage.ElementalBlast;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.mage.WarpBeacon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.mage.WildMagic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.malicious.GrindBlade;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.malicious.HugeCannon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.malicious.MultiplePulse;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.rogue.DeathMark;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.rogue.ShadowClone;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.rogue.SmokeBomb;
@@ -44,9 +56,14 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.En
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.HeroicLeap;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.Shockwave;
 import com.shatteredpixel.shatteredpixeldungeon.items.BrokenSeal;
+import com.shatteredpixel.shatteredpixeldungeon.items.FinderEye;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.SwallowTail;
 import com.shatteredpixel.shatteredpixeldungeon.items.Waterskin;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.AaliyahCore;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.JunkCore;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.OrbiterCore;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
@@ -63,6 +80,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.gun.TierOneHandgun;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.gun.TierOneRifle;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Dagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -80,7 +99,12 @@ public enum HeroClass {
 	MAGE( HeroSubClass.BATTLEMAGE, HeroSubClass.WARLOCK ),
 	ROGUE( HeroSubClass.ASSASSIN, HeroSubClass.FREERUNNER ),
 	HUNTRESS( HeroSubClass.SNIPER, HeroSubClass.WARDEN ),
-	DUELIST( HeroSubClass.CHAMPION, HeroSubClass.MONK );
+	DUELIST( HeroSubClass.CHAMPION, HeroSubClass.MONK ),
+
+	ANATOLIA(),
+	AUGMENTED(),
+	MALICIOUS(),
+	LASTRAVEN();
 
 	private HeroSubClass[] subClasses;
 
@@ -94,7 +118,7 @@ public enum HeroClass {
 		Talent.initClassTalents(hero);
 
 		Item i = new ClothArmor().identify();
-		if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ClothArmor)i;
+		//if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ClothArmor)i;
 
 		i = new Food();
 		if (!Challenges.isItemBlocked(i)) i.collect();
@@ -108,6 +132,7 @@ public enum HeroClass {
 		new ScrollOfIdentify().identify();
 
 		switch (this) {
+			/*
 			case WARRIOR:
 				initWarrior( hero );
 				break;
@@ -126,6 +151,23 @@ public enum HeroClass {
 
 			case DUELIST:
 				initDuelist( hero );
+				break;
+				*/
+
+			case ANATOLIA:
+				initAnatolia( hero );
+				break;
+
+			case AUGMENTED:
+				initAugmented( hero );
+				break;
+
+			case MALICIOUS:
+				initMalicious( hero );
+				break;
+
+			case LASTRAVEN:
+				initLastRaven( hero );
 				break;
 		}
 
@@ -152,6 +194,14 @@ public enum HeroClass {
 				return Badges.Badge.MASTERY_HUNTRESS;
 			case DUELIST:
 				return Badges.Badge.MASTERY_DUELIST;
+			case ANATOLIA:
+				return Badges.Badge.MASTERY_ANATOLIA;
+			case AUGMENTED:
+				return Badges.Badge.MASTERY_AUGMENTED;
+			case MALICIOUS:
+				return Badges.Badge.MASTERY_MALICIOUS;
+			case LASTRAVEN:
+				return Badges.Badge.MASTERY_LASTRAVEN;
 		}
 		return null;
 	}
@@ -228,6 +278,57 @@ public enum HeroClass {
 		new ScrollOfMirrorImage().identify();
 	}
 
+	private static void initAnatolia( Hero hero ) {
+		(hero.belongings.weapon = new WornShortsword()).identify();
+		ThrowingStone stones = new ThrowingStone();
+		stones.quantity(3).collect();
+		Dungeon.quickslot.setSlot(0, stones);
+
+		Item j = new AaliyahCore().identify();
+		if (!Challenges.isItemBlocked(j)) hero.belongings.armor = (AaliyahCore)j;
+
+		if (hero.belongings.armor != null){
+			hero.belongings.armor.affixSeal(new BrokenSeal());
+		}
+
+		new PotionOfHealing().identify();
+		new ScrollOfRage().identify();
+	}
+
+	private static void initAugmented( Hero hero ) {
+		TierOneRifle rifle = new TierOneRifle();
+		(hero.belongings.weapon = rifle).identify();
+		Dungeon.quickslot.setSlot(0, rifle);
+
+		FinderEye eye = new FinderEye();
+		eye.identify().collect();
+
+		Item j = new OrbiterCore().identify();
+		if (!Challenges.isItemBlocked(j)) hero.belongings.armor = (OrbiterCore)j;
+
+		new ScrollOfUpgrade().identify();
+		new PotionOfLiquidFlame().identify();
+	}
+
+	private static void initMalicious( Hero hero ) {
+		TierOneHandgun handgun = new TierOneHandgun();
+		(hero.belongings.weapon = handgun).identify();
+		Dungeon.quickslot.setSlot(0, handgun);
+
+		SwallowTail tail = new SwallowTail();
+		tail.identify().collect();
+
+		Item j = new JunkCore().identify();
+		if (!Challenges.isItemBlocked(j)) hero.belongings.armor = (JunkCore)j;
+
+		new ScrollOfMagicMapping().identify();
+		new PotionOfInvisibility().identify();
+	}
+
+	private static void initLastRaven( Hero hero ) {
+
+	}
+
 	public String title() {
 		return Messages.get(HeroClass.class, name());
 	}
@@ -246,7 +347,7 @@ public enum HeroClass {
 
 	public ArmorAbility[] armorAbilities(){
 		switch (this) {
-			case WARRIOR: default:
+			case WARRIOR:
 				return new ArmorAbility[]{new HeroicLeap(), new Shockwave(), new Endure()};
 			case MAGE:
 				return new ArmorAbility[]{new ElementalBlast(), new WildMagic(), new WarpBeacon()};
@@ -256,12 +357,20 @@ public enum HeroClass {
 				return new ArmorAbility[]{new SpectralBlades(), new NaturesPower(), new SpiritHawk()};
 			case DUELIST:
 				return new ArmorAbility[]{new Challenge(), new ElementalStrike(), new Feint()};
+			case ANATOLIA: default:
+				return new ArmorAbility[]{new AnemEcm(), new Flicker(), new SolDios()};
+			case AUGMENTED:
+				return new ArmorAbility[]{new WalterRifle(), new PulseProtection(), new HuxleyOrbit()};
+			case MALICIOUS:
+				return new ArmorAbility[]{new GrindBlade(), new HugeCannon(), new MultiplePulse()};
+			case LASTRAVEN:
+				return new ArmorAbility[]{new Medusa(), new Moray(), new Ishyanaten()};
 		}
 	}
 
 	public String spritesheet() {
 		switch (this) {
-			case WARRIOR: default:
+			case WARRIOR:
 				return Assets.Sprites.WARRIOR;
 			case MAGE:
 				return Assets.Sprites.MAGE;
@@ -271,12 +380,20 @@ public enum HeroClass {
 				return Assets.Sprites.HUNTRESS;
 			case DUELIST:
 				return Assets.Sprites.DUELIST;
+			case ANATOLIA: default:
+				return Assets.Sprites.ANATOLIA;
+			case AUGMENTED:
+				return Assets.Sprites.AUGMENTED;
+			case MALICIOUS:
+				return Assets.Sprites.MALICIOUS;
+			case LASTRAVEN:
+				return Assets.Sprites.LASTRAVEN;
 		}
 	}
 
 	public String splashArt(){
 		switch (this) {
-			case WARRIOR: default:
+			case WARRIOR:
 				return Assets.Splashes.WARRIOR;
 			case MAGE:
 				return Assets.Splashes.MAGE;
@@ -286,6 +403,14 @@ public enum HeroClass {
 				return Assets.Splashes.HUNTRESS;
 			case DUELIST:
 				return Assets.Splashes.DUELIST;
+			case ANATOLIA: default:
+				return Assets.Splashes.ANATOLIA;
+			case AUGMENTED:
+				return Assets.Splashes.AUGMENTED;
+			case MALICIOUS:
+				return Assets.Splashes.MALICIOUS;
+			case LASTRAVEN:
+				return Assets.Splashes.LASTRAVEN;
 		}
 	}
 	
@@ -294,7 +419,7 @@ public enum HeroClass {
 		if (DeviceCompat.isDebug()) return true;
 
 		switch (this){
-			case WARRIOR: default:
+			case WARRIOR:
 				return true;
 			case MAGE:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_MAGE);
@@ -304,6 +429,14 @@ public enum HeroClass {
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_HUNTRESS);
 			case DUELIST:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_DUELIST);
+			case ANATOLIA: default:
+				return true;
+			case AUGMENTED:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_AUGMENTED);
+			case MALICIOUS:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_MALICIOUS);
+			case LASTRAVEN:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_LASTRAVEN);
 		}
 	}
 	
